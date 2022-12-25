@@ -1,29 +1,23 @@
 import requests
 
-def get_name(username: str):
-    """
-    This function takes a GitHub username and outputs the GitHub display name.
+class User_Finder:
+    
+    def __init__(self, username):
+        self.username = username
 
-    :param username: Any valid GitHub username
-    :returns: display name as a string variable.
-    """
+    @property
+    def display_name():
+        """
+        Takes a GitHub username and outputs the GitHub display name.
 
-    API_URL = f"https://api.github.com/users/{username}"
-    Response = requests.get(API_URL)
-    display_name = str(Response.json()['name'])
-    formatted_name_string = f"Name: {display_name}"
-    print(formatted_name_string)
+        :param username: Any valid GitHub username
+        :returns: display name as a string variable.
+        """
 
-    return display_name
+        API_URL = f"https://api.github.com/users/{self.username}"
+        response = requests.get(API_URL)
+        display_name = str(response.json()['name'])
+        formatted_name_string = f"Name: {display_name}"
+        print(formatted_name_string)
 
-
-def main():
-    """
-    Demonstrating how to use the get_name() function.
-    """
-
-    get_name("asefg482")
-
-
-if __name__ == "__main__":
-    main()
+        return display_name
